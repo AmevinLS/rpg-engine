@@ -1,0 +1,42 @@
+{
+    "variables": {
+        "health": 5,
+        "karma": 0
+    },
+    "storypoints": {
+        "start": {
+            "texts": [
+                "You are the royal protector of the Empress of the Isles. She sent you on a mission to the other islands to request their aid for the plague, currently ravaging the capital city.",
+                "Unfortunately, they left the capital to rot, waiting to see what will come of it. You came to tell the Empress the bad news."
+            ],
+            "prompt": "Suddenly, seemingly out of nowhere, a team of mercenaries appear with swords drawn. What do you do?",
+            "choices": [
+                {
+                    "text": "Shoot them with your pistol",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "You manage to gun some of them down.",
+                        "nextStoryPoints": "prison"
+                    }
+                },
+                {
+                    "text": "Attack them with your sword",
+                    "nextStoryPoint": 0.5,
+                    "successRate": 0.8,
+                    "success": {
+                        "text": "You manage to slash some of them down.",
+                        "nextStoryPoints": "prison"
+                    },
+                    "fail": {
+                        "text": "Your arm is quickly slashed with a sword and you drop your pistol",
+                        "nextStoryPoint": "prison",
+                        "varChanges": {
+                            "health": -1
+                        }
+                    }
+                }
+            ] 
+        }
+    }
+    
+}
