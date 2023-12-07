@@ -1,9 +1,10 @@
 import "./Choice.css";
 
-export default function Choice() {
+export default function Choice( {choice} ) {
     return (
-        <div>
-
+        <div className="choice">
+            <p>{choice.text}</p>
+            <p>{choice.successRate*100}%</p>
         </div>
     );
 }

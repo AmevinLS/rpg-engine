@@ -1,0 +1,10 @@
+.story-text-box {
+    border-style: solid;
+    border-color: whitesmoke;
+    border-width: 0.1rem;
+    border-radius: 0.5rem;
+
+    padding: 1rem;
+
+    cursor: pointer;
+}

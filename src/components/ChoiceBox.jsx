@@ -1,6 +1,6 @@
 import "./ChoiceBox.css";
 
-function ChoiceBox() {
+function ChoiceBox({ choices }) {
     return (
         <>
             
