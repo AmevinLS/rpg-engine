@@ -8,3 +8,7 @@
 
     cursor: pointer;
 }
+
+.story-text-box > p {
+    margin: 0;
+}

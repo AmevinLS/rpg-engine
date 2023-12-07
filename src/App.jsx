@@ -11,7 +11,7 @@ import StoryPointText from './components/StoryPointText';
 function App() {
     return (
         <>
-            <h1>Hello Habibis</h1>
+            <h1>{story.title}</h1>
             <StoryPointText storypoint={story.storypoints.start} />
             <ChoiceBox prompt={story.storypoints.start.prompt} choices={story.storypoints.start.choices} />
         </>

@@ -1,0 +1,12 @@
+.gone {
+    display: none;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.weak-prompt {
+    font-style: italic;
+    color: lightblue;
+}
