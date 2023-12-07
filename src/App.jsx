@@ -13,7 +13,7 @@ function App() {
         <>
             <h1>Hello Habibis</h1>
             <StoryPointText storypoint={story.storypoints.start} />
-            <ChoiceBox choices={story.storypoints.start} />
+            <ChoiceBox prompt={story.storypoints.start.prompt} choices={story.storypoints.start.choices} />
         </>
     )
 }

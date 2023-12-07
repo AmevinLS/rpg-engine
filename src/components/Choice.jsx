@@ -1,6 +1,6 @@
 import "./Choice.css";
 
-export default function Choice( {choice} ) {
+function Choice( {choice} ) {
     return (
         <div className="choice">
             <p>{choice.text}</p>
@@ -8,3 +8,5 @@ export default function Choice( {choice} ) {
         </div>
     );
 }
+
+export default Choice;

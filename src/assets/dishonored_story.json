@@ -7,9 +7,10 @@
         "start": {
             "texts": [
                 "You are the royal protector of the Empress of the Isles. She sent you on a mission to the other islands to request their aid for the plague, currently ravaging the capital city.",
-                "Unfortunately, they left the capital to rot, waiting to see what will come of it. You came to tell the Empress the bad news."
+                "Unfortunately, they left the capital to rot, waiting to see what will come of it. You came to tell the Empress the bad news.",
+                "Suddenly, seemingly out of nowhere, a team of mercenaries appear with swords drawn!"
             ],
-            "prompt": "Suddenly, seemingly out of nowhere, a team of mercenaries appear with swords drawn. What do you do?",
+            "prompt": "How do you fight back?",
             "choices": [
                 {
                     "text": "Shoot them with your pistol",
