@@ -18,16 +18,15 @@
                     "successRate": 1.0,
                     "success": {
                         "text": "You manage to gun some of them down.",
-                        "nextStoryPoints": "prison"
+                        "nextStoryPoint": "prison"
                     }
                 },
                 {
                     "text": "Attack them with your sword",
-                    "nextStoryPoint": 0.5,
                     "successRate": 0.8,
                     "success": {
                         "text": "You manage to slash some of them down.",
-                        "nextStoryPoints": "prison"
+                        "nextStoryPoint": "prison"
                     },
                     "fail": {
                         "text": "Your arm is quickly slashed with a sword and you drop your pistol",

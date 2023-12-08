@@ -17,7 +17,7 @@ export default function StoryPointText({ storypoint, onFinished}) {
     };
 
     return (
-        <div className={"story-text-box" + ((isFinalText) ? "" : " clickable")} onClick={handleClick}>
+        <div className={"default-box story-text-box" + ((isFinalText) ? "" : " clickable")} onClick={handleClick}>
             <p>{storypoint.texts[textIndex]}</p>
             {(!isFinalText) ? (<p className="weak-prompt">[Click to continue]</p>) : null}      
         </div>

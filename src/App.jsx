@@ -13,7 +13,8 @@ function App() {
     const [currStorypoint, setCurrStorypoint] = useState(story.storypoints["start"]);
     const [key, setKey] = useState(0);
     const [openChoiceBox, setOpenChoiceBox] = useState(false);
-    
+    const [variables, setVariables] = useState(story.variables);
+
     const restart = (event) => {
         setCurrStorypoint(story.storypoints["start"]);
         setOpenChoiceBox(false);
@@ -22,18 +23,30 @@ function App() {
 
     const showChoices = () => {
         setOpenChoiceBox(true);
-    }
+    };
+
+    const handleChoiceMade = (choice) => {
+        console.log(`Will now go to storypoint ${choice.success.nextStoryPoint}`);
+    };
 
     return (
         <>
             <h1>{story.title}</h1>
             <Button onClick={restart} type="primary">Restart</Button>
-            <StoryPointText key={key} storypoint={currStorypoint} onFinished={showChoices}/>
-            <Collapse in={openChoiceBox}>
-                <div>
-                    {openChoiceBox && <ChoiceBox prompt={currStorypoint.prompt} choices={currStorypoint.choices} />}
+            <div className="panels-contain">
+                <div className="left-panel">
+                    <StoryPointText key={key} storypoint={currStorypoint} onFinished={showChoices}/>
+                    <Collapse in={openChoiceBox}>
+                        <div>
+                            {openChoiceBox && <ChoiceBox prompt={currStorypoint.prompt} choices={currStorypoint.choices} onChoiceMade={handleChoiceMade}/>}
+                        </div>
+                    </Collapse>
                 </div>
-            </Collapse>
+                <div className="default-box right-panel">
+
+                </div>
+            </div>
+            
         </>
     )
 }

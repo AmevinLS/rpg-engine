@@ -10,3 +10,18 @@
 #root > * {
     margin-bottom: 2rem;
 }
+
+
+div.panels-contain {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+div.left-panel {
+    width: 70%;
+    padding: 0.5rem;
+}
+div.left-panel > * {
+    margin-bottom: 2rem;
+}
