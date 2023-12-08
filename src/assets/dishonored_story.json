@@ -5,7 +5,7 @@
         "karma": 0
     },
     "storypoints": {
-        "start": {
+        "START": {
             "texts": [
                 "You are the royal protector of the Empress of the Isles. She sent you on a mission to the other islands to request their aid for the plague, currently ravaging the capital city.",
                 "Unfortunately, they left the capital to rot, waiting to see what will come of it. You came to tell the Empress the bad news.",
@@ -31,6 +31,56 @@
                     "fail": {
                         "text": "Your arm is quickly slashed with a sword and you drop your pistol",
                         "nextStoryPoint": "prison",
+                        "varChanges": {
+                            "health": -1
+                        }
+                    }
+                }
+            ] 
+        },
+        "prison": {
+            "texts": [
+                "You, however, are knocked to the ground, barely concious. On your eyes, the assassins stab the Empress in the gut, killing her.",
+                "They grab the Empress's daughter Emily and disappear with her, seemingly into thin air.",
+                "The guards arrive, seeing only you and a dead Empress laying next to you...",
+                "Since nobody else is around... YOU are blamed for her murder and sent to prison.",
+                "...",
+                "It has been six months... Your execution is in 3 days...",
+                "Suddenly, you feel something on your hand - a mysterious symbol, burning from the inside...",
+                "You feel invigorated. But also you notice something strange: if you focuse on some place in the room hard enough and blink - you are transported to that place in an instant"
+            ],
+            "prompt": "What do you do with your newfound powers?",
+            "choices": [
+                {
+                    "text": "Nothing, I'm probably hallucinating from being alone in my cell for too long",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "You rot in your cell for three more days, until your head rolls for a crime you didn't even commit",
+                        "nextStoryPoint": "END"
+                    }
+                },
+                {
+                    "text": "Escape the prison, slashing and gunning down every scumbag guard you encounter",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "It was a slaughter, but you manage to escape, leaving almost no survivors",
+                        "nextStoryPoint": "findingEmily",
+                        "varChanges": {
+                            "health": -2,
+                            "karma": -1
+                        }
+                    }
+                },
+                {
+                    "text": "Escape the prison, knocking guards unconscious as neccessary, leaving the rest untouched",
+                    "successRate": 0.7,
+                    "success": {
+                        "text": "You manage to escape, unnoticed and untouched",
+                        "nextStoryPoint": "findingEmily"
+                    },
+                    "fail": {
+                        "text": "You manage to escape, although having brutal swordfights and suffering some bruises",
+                        "nextStoryPoint": "findingEmily",
                         "varChanges": {
                             "health": -1
                         }

@@ -14,8 +14,10 @@
 .default-box {
     border-style: solid;
     border-color: whitesmoke;
-    border-width: 0.1rem;
+    border-width: 0.05rem;
     border-radius: 0.5rem;
+
+    background-color: #1a1a1a;
 
     padding: 1rem;
 }

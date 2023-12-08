@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import "./common.css";
 import "./StoryPointText.css";
 
 export default function StoryPointText({ storypoint, onFinished}) {
+    // const [storypoint, setStorypoint] = useState(storypoint);
     const [textIndex, setTextIndex] = useState(0);
     const [isFinalText, setIsFinalText] = useState(false);
+
+    useEffect(() => {
+        setTextIndex(0);
+        setIsFinalText(false);
+    }, [storypoint])
 
     const handleClick = (event) => {
         if (textIndex < storypoint.texts.length-1) {

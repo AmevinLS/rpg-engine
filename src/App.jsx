@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Collapse } from 'react-bootstrap';
 import ChoiceBox from './components/ChoiceBox';
 import VariablesList from './components/VariablesList';
@@ -13,13 +13,13 @@ import story from './assets/dishonored_story.json';
 
 function App() {
     // const [currStorypointName, setCurrStorypointName] = useState("start");
-    const [currStorypoint, setCurrStorypoint] = useState(story.storypoints["start"]);
+    const [currStorypoint, setCurrStorypoint] = useState(story.storypoints["START"]);
     const [key, setKey] = useState(0);
     const [openChoiceBox, setOpenChoiceBox] = useState(false);
     const [variables, setVariables] = useState(story.variables);
 
     const restart = (event) => {
-        setCurrStorypoint(story.storypoints["start"]);
+        setCurrStorypoint(story.storypoints["START"]);
         setOpenChoiceBox(false);
         setKey(prevKey => prevKey + 1);
     };
@@ -28,9 +28,27 @@ function App() {
         setOpenChoiceBox(true);
     };
 
-    const handleChoiceMade = (choice) => {
-        console.log(`Will now go to storypoint ${choice.success.nextStoryPoint}`);
+    const updateStorypoint = (choiceResult) => {
+        if (choiceResult.varChanges) {
+            setVariables((prevVariables => {
+                let newVariables = {...prevVariables}
+                Object.keys(choiceResult.varChanges).forEach(varName => {
+                    newVariables[varName] += choiceResult.varChanges[varName];
+                });
+                return newVariables;
+            }));
+        }
+        console.log("choiceResult = ", choiceResult);
+        setCurrStorypoint(story.storypoints[choiceResult.nextStoryPoint]);
     };
+
+    const handleChoiceResult = (choiceResult) => {
+        updateStorypoint(choiceResult);
+    };
+
+    useEffect(() => {
+        setOpenChoiceBox(false);
+    }, [currStorypoint])
 
     return (
         <>
@@ -41,7 +59,7 @@ function App() {
                     <StoryPointText key={key} storypoint={currStorypoint} onFinished={showChoices}/>
                     <Collapse in={openChoiceBox}>
                         <div>
-                            {openChoiceBox && <ChoiceBox prompt={currStorypoint.prompt} choices={currStorypoint.choices} onChoiceMade={handleChoiceMade}/>}
+                            {openChoiceBox && <ChoiceBox prompt={currStorypoint.prompt} choices={currStorypoint.choices} onChoiceResult={handleChoiceResult}/>}
                         </div>
                     </Collapse>
                 </div>

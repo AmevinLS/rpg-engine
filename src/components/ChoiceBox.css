@@ -3,3 +3,19 @@
     flex-flow: column;
     justify-content: space-between;
 }
+
+.choice-box > hr {
+    border-width: 5px;
+}
+
+.result-div {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.result-div.show-result {
+    opacity: 1;
+    max-height: 200px;
+}
