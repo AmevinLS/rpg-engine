@@ -1,0 +1,8 @@
+.var-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    block-size: fit-content;
+
+    width: 15%;
+}

@@ -19,3 +19,8 @@
 
     padding: 1rem;
 }
+
+.default-box p {
+    margin: 0;
+    padding: 0.3rem;
+}

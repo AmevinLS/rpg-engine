@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { Button, Collapse } from 'react-bootstrap';
 import ChoiceBox from './components/ChoiceBox';
+import VariablesList from './components/VariablesList';
+import StoryPointText from './components/StoryPointText';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 import story from './assets/dishonored_story.json';
-import StoryPointText from './components/StoryPointText';
+
+// TODO: Write story JSON validator
 
 function App() {
     // const [currStorypointName, setCurrStorypointName] = useState("start");
@@ -42,11 +45,8 @@ function App() {
                         </div>
                     </Collapse>
                 </div>
-                <div className="default-box right-panel">
-
-                </div>
+                <VariablesList variables={variables}/>
             </div>
-            
         </>
     )
 }
