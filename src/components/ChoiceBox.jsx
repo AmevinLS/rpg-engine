@@ -7,10 +7,9 @@ function ChoiceBox({ prompt, choices, onChoiceResult }) {
     const [selectedChoice, setSelectedChoice] = useState(null);
     const [choiceResult, setChoiceResult] = useState(null);
 
-    const handleChoiceMade = (choice) => {
+    const handleChoiceMade = (choice, result) => {
         setSelectedChoice(choice);
-        const newChoiceResult = (Math.random() < choice.successRate) ? choice.success : choice.fail;
-        setChoiceResult(newChoiceResult);
+        setChoiceResult(result);
     };
 
     const handleContinueAfterResult = (event) => {
@@ -21,7 +20,16 @@ function ChoiceBox({ prompt, choices, onChoiceResult }) {
         <div className="default-box choice-box">
             <p>{prompt}</p>
             {choices.map((choice) => {
-                return <Choice key={choice.text} choice={choice} onChoiceMade={handleChoiceMade}/>;
+                let mode = "default";
+                if (selectedChoice) {
+                    if (choice == selectedChoice) {
+                        mode = "perma-on"
+                    } else {
+                        mode = "perma-off";
+                    }
+                }
+                console.log(mode);
+                return <Choice key={choice.text} choice={choice} mode={mode} onChoiceMade={handleChoiceMade}/>;
             })}
             <hr/>
             <div className={`result-div ${choiceResult ? 'show-result': ''}`}>

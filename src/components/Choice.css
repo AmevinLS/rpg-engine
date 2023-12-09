@@ -1,10 +1,18 @@
+.choice-container {
+    display: grid;
+    grid-template-columns: 50% 25% 25%;
+    padding: 0.3rem;
+    column-gap: 0.3rem;
+}
+
+
 .choice {
     display: flex;
     text-align: center;
     text-justify: center;
     justify-content: space-between;
     
-    width: 70%;
+    /* width: 70%; */
     padding: 0.4rem;
     border-style: solid;
     border-radius: 0.3rem;
@@ -12,16 +20,73 @@
 
     font-weight: bold;
     font-style: italic;
+}
 
+.choice > p {
+    margin: 0;
+}
+
+.choice-default {
     transition: 0.3s;
 }
 
-.choice:hover {
+.choice-perma-on,.choice-default:hover {
     background-color: azure;
     color: black;
     border-color: black;
 }
 
-.choice > p {
-    margin: 0;
+.choice-perma-off {
+    opacity: 0.5;
+}
+
+
+.success {
+    display: flex;
+    text-align: center;
+    text-justify: center;
+    justify-content: space-between;
+    
+    padding: 0.4rem;
+    border-style: solid;
+    color: #31dd73;
+    border-color: #31dd73;
+    border-radius: 0.3rem;
+    border-width: 0.05rem;
+
+    font-weight: bold;
+    font-style: italic;
+}
+
+.success-on {
+    background-color: #31dd73;
+    color: black;
+    border-color: black;
+}
+
+.fail {
+    display: flex;
+    text-align: center;
+    text-justify: center;
+    justify-content: space-between;
+    
+    padding: 0.4rem;
+    border-style: solid;
+    color: #ff5656;
+    border-color: #ff5656;
+    border-radius: 0.3rem;
+    border-width: 0.05rem;
+
+    font-weight: bold;
+    font-style: italic;
+}
+
+.fail-on {
+    background-color: #ff5656;
+    color: black;
+    border-color: black;
+}
+
+.success-off,.fail-off {
+    opacity: 0.5;
 }

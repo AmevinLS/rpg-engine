@@ -23,7 +23,7 @@
                 },
                 {
                     "text": "Attack them with your sword",
-                    "successRate": 0.8,
+                    "successRate": 0.5,
                     "success": {
                         "text": "You manage to slash some of them down.",
                         "nextStoryPoint": "prison"
