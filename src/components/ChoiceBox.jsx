@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Collapse } from 'react-bootstrap';
 import Choice from "./Choice";
 import "./ChoiceBox.css";
@@ -16,6 +16,11 @@ function ChoiceBox({ prompt, choices, onChoiceResult }) {
         onChoiceResult(choiceResult);
     };
 
+    useEffect(() => {
+        setSelectedChoice(null);
+        setChoiceResult(null);
+    }, [choices]);
+
     return (
         <div className="default-box choice-box">
             <p>{prompt}</p>
@@ -28,7 +33,6 @@ function ChoiceBox({ prompt, choices, onChoiceResult }) {
                         mode = "perma-off";
                     }
                 }
-                console.log(mode);
                 return <Choice key={choice.text} choice={choice} mode={mode} onChoiceMade={handleChoiceMade}/>;
             })}
             <hr/>

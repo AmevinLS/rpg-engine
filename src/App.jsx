@@ -22,6 +22,7 @@ function App() {
         setCurrStorypoint(story.storypoints["START"]);
         setOpenChoiceBox(false);
         setKey(prevKey => prevKey + 1);
+        setVariables(story.variables);
     };
 
     const showChoices = () => {
@@ -38,7 +39,6 @@ function App() {
                 return newVariables;
             }));
         }
-        console.log("choiceResult = ", choiceResult);
         setCurrStorypoint(story.storypoints[choiceResult.nextStoryPoint]);
     };
 
@@ -59,11 +59,11 @@ function App() {
                     <StoryPointText key={key} storypoint={currStorypoint} onFinished={showChoices}/>
                     <Collapse in={openChoiceBox}>
                         <div>
-                            {openChoiceBox && <ChoiceBox prompt={currStorypoint.prompt} choices={currStorypoint.choices} onChoiceResult={handleChoiceResult}/>}
+                            {<ChoiceBox key={key} prompt={currStorypoint.prompt} choices={currStorypoint.choices} onChoiceResult={handleChoiceResult}/>}
                         </div>
                     </Collapse>
                 </div>
-                <VariablesList variables={variables}/>
+                <VariablesList key={key} variables={variables}/>
             </div>
         </>
     )

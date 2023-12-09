@@ -26,7 +26,7 @@ function Choice( {choice, mode, onChoiceMade} ) {
     }
 
     const getResultClassNames = (resultName) => {
-        let classes = `${resultName}`;
+        let classes = `choice-result ${resultName}`;
         if (mode == "perma-on") {
             if (choiceResultName == resultName) {
                 classes += ` ${resultName}-on`;
@@ -45,12 +45,28 @@ function Choice( {choice, mode, onChoiceMade} ) {
                 <p>{choice.text}</p>
                 <p>{choice.successRate*100}%</p>
             </div>
-            <div className={getResultClassNames("success")}>
-                Good
-            </div>
-            <div className={getResultClassNames("fail")}>
-                Bad
-            </div>
+            {(choice.success)
+            ? 
+                <div className={getResultClassNames("success")}>
+                    {(choice.success.varChanges)
+                    ?
+                        Object.keys(choice.success.varChanges).map(varName => {
+                            return (<p key={varName}>{varName}: {choice.success.varChanges[varName]}</p>)
+                        })
+                    : <hr/>}
+                </div>
+            : null}
+            {(choice.fail)
+            ? 
+                <div className={getResultClassNames("fail")}>
+                    {(choice.fail.varChanges)
+                    ?
+                        Object.keys(choice.fail.varChanges).map(varName => {
+                            return (<p key={varName}>{varName}: {choice.fail.varChanges[varName]}</p>)
+                        })
+                    : <hr/>}
+                </div>
+            : null}
         </div>
     );
 }
