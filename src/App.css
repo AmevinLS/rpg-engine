@@ -26,3 +26,13 @@ div.left-panel {
 div.left-panel > * {
     margin-bottom: 2rem;
 }
+
+div.end-div {
+    text-align: center;
+}
+
+div.end-div > p {
+    font-size: 4rem;
+    font-weight: bold;
+    font-style: italic;
+}

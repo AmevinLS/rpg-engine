@@ -9,7 +9,28 @@
 .weak-prompt {
     font-style: italic;
     color: lightblue;
+    animation: blink 2s linear infinite;
 }
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: .5;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: .5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
 
 .default-box {
     border-style: solid;

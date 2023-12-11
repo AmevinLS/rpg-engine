@@ -2,13 +2,23 @@
     "title": "Dishonored (sort of)",
     "variables": {
         "health": 5,
-        "karma": 0
+        "karma": 10,
+        "keyItems": 0
     },
+    "varTriggerEvents": [
+        {
+            "varName": "health",
+            "varValue": 0,
+            "nextStoryPoint": "noHealthEND"
+        }
+    ],
     "storypoints": {
         "START": {
             "texts": [
-                "You are the royal protector of the Empress of the Isles. She sent you on a mission to the other islands to request their aid for the plague, currently ravaging the capital city.",
-                "Unfortunately, they left the capital to rot, waiting to see what will come of it. You came to tell the Empress the bad news.",
+                "You are the royal protector of the Empress of the Isles, as well as her daughter Emily. You were sent on a mission to the other islands to request their aid for the plague currently ravaging the capital city.",
+                "Unfortunately, they all left the capital island to rot, waiting to see what will come of it. You return to tell the Empress the bad news.",
+                "Emily gives you a warm welcoming hug after not seeing you for such a long time. The Empress seems distrought that the people of the capital will be left without the support they need.",
+                "...",
                 "Suddenly, seemingly out of nowhere, a team of mercenaries appear with swords drawn!"
             ],
             "prompt": "How do you fight back?",
@@ -32,22 +42,26 @@
                         "text": "Your arm is quickly slashed with a sword and you drop your pistol",
                         "nextStoryPoint": "prison",
                         "varChanges": {
-                            "health": -1
+                            "health": -5
                         }
                     }
                 }
             ] 
         },
+
         "prison": {
             "texts": [
-                "You, however, are knocked to the ground, barely concious. On your eyes, the assassins stab the Empress in the gut, killing her.",
+                "After an intense fight, you are knocked to the ground, barely concious. On your eyes, the assassins stab the Empress in the gut, killing her.",
                 "They grab the Empress's daughter Emily and disappear with her, seemingly into thin air.",
                 "The guards arrive, seeing only you and a dead Empress laying next to you...",
                 "Since nobody else is around... YOU are blamed for her murder and sent to prison.",
+                "[TODO] Add high overseer here",
                 "...",
                 "It has been six months... Your execution is in 3 days...",
-                "Suddenly, you feel something on your hand - a mysterious symbol, burning from the inside...",
-                "You feel invigorated. But also you notice something strange: if you focuse on some place in the room hard enough and blink - you are transported to that place in an instant"
+                "Suddenly, you hear a voice coming out of nowhere, from the space around: 'Do you seek... revenge?...'", 
+                "Something starts burning on the backside of your hand - a mysterious symbol appearing as a branding",
+                "You feel invigorated, even after the months of near-starvation on a prison diet. But you also notice something strange: if you focuse on some place in the room hard enough and blink - you are transported to that place in an instant",
+                "'Use my gift to you wisely - I will be watching your story with great interest...' - the voice says, slowly fading back into the nothingness"
             ],
             "prompt": "What do you do with your newfound powers?",
             "choices": [
@@ -56,7 +70,7 @@
                     "successRate": 1.0,
                     "success": {
                         "text": "You rot in your cell for three more days, until your head rolls for a crime you didn't even commit",
-                        "nextStoryPoint": "END"
+                        "nextStoryPoint": "prisonDeathEND"
                     }
                 },
                 {
@@ -64,7 +78,7 @@
                     "successRate": 1.0,
                     "success": {
                         "text": "It was a slaughter, but you manage to escape, leaving almost no survivors",
-                        "nextStoryPoint": "findingEmily",
+                        "nextStoryPoint": "distilleryDistrict",
                         "varChanges": {
                             "health": -2,
                             "karma": -1
@@ -76,17 +90,305 @@
                     "successRate": 0.7,
                     "success": {
                         "text": "You manage to escape, unnoticed and untouched",
-                        "nextStoryPoint": "findingEmily"
+                        "nextStoryPoint": "distilleryDistrict"
                     },
                     "fail": {
                         "text": "You manage to escape, although having brutal swordfights and suffering some bruises",
-                        "nextStoryPoint": "findingEmily",
+                        "nextStoryPoint": "distilleryDistrict",
                         "varChanges": {
                             "health": -1
                         }
                     }
                 }
             ] 
+        },
+
+        "distilleryDistrict": {
+            "texts": [
+                "The only thing you know for sure is that the High Overseer is deep in this.",
+                "So you start your journey by going to the Distillery District, where the High Overseer's heaquarters are located. You need to find out if he's behind all of this, or just a pawn.",
+                "As you enter the District, you notice in a side street some thugs banging on a door yelling 'Open up, Granny!! We're here to do your laundry... C'mon, open up Granny!'"
+            ],
+            "prompt": "What do you do?",
+            "choices": [
+                {
+                    "text": "Continue to the main part of the district. I don't have time for such nonsense",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "Gotta stay focused...",
+                        "nextStoryPoint": "highOverseerHQ"
+                    }
+                },
+                {
+                    "text": "Help out and deal with the thugs",
+                    "successRate": 0.8,
+                    "success": {
+                        "text": "You switfly neutralize the gentlemen, dashing from balcony to balcony and appearing behind each one in a blink",
+                        "nextStoryPoint": "grannyRags"
+                    },
+                    "fail": {
+                        "text": "One of the guys takes a mouthfull of whiskey, and starts blowing it at you through a lighter - you get several burns on your face. You manage to get behind him and redirect the flame towards his friends, burning them to death. You then choke out the guy you're holding. That's all of them...",
+                        "nextStoryPoint": "grannyRags",
+                        "varChanges": {
+                            "health": -1
+                        }
+                    }
+                }
+            ] 
+        },
+
+        "grannyRags": {
+            "texts": [
+                "An old granny opens the door. Like... really old and creepy - what devilish dark magic is still keeping her alive. She speaks to you:",
+                "'Thank you, for dealing with those so-called gentlement callers. They have started coming too often...",
+                "... You know you could help me deal with them permanently. They are part of a gang, holed up in the Old Whiskey Distillery, not far from here. They still use distillery's system for creating the plague elixir ...",
+                "... If only you could drop this gut, that I extracted from a rat. Will you do it, please? For granny?"
+            ],
+            "prompt": "Do you accept her task?",
+            "choices": [
+                {
+                    "text": "Yeah sure, seems ok and totally normal",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "You receive the rat part from granny and set out",
+                        "nextStoryPoint": "afterGranny",
+                        "varChanges": {
+                            "keyItems": 1
+                        }
+                    }
+                },
+                {
+                    "text": "Nope, totally checking out of this situation",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "You say goodbies as politely as you can and leave the place",
+                        "nextStoryPoint": "afterGranny"
+                    }
+                }
+            ] 
+        },
+
+        "afterGranny": {
+            "texts": [
+                "You leave granny's house"
+            ],
+            "prompt": "Where do you go?",
+            "choices": [
+                {
+                    "text": "Get back to the main street towards the High Overseer's HQ",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "Back to business",
+                        "nextStoryPoint": "highOverseerHQ"
+                    }
+                },
+                {
+                    "text": "Let's check our the Old Distillery. Perhaps I'll find something interesting",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "You proceed through a dimly-lit street towards the entrance and enter the Distillery",
+                        "nextStoryPoint": "whiskeyDistillery"
+                    }
+                }
+            ] 
+        },
+
+        "whiskeyDistillery": {
+            "texts": [
+                "You enter the Old Whiskey Distillery, sneaking past all the gang members. All the pipes lead to a room, which is nicely decorated and has some business notes on the table. Probably the boss's room.",
+                "There is the usual giant contraption in the middle of it - the elixir maker. However, footsteps are heard, closing to the door"
+            ],
+            "prompt": "What do you do?",
+            "choices": [
+                {
+                    "text": "Quickly drop the rat part into the contraptions' boiler and escape through the window",
+                    "successRate": 0.5,
+                    "success": {
+                        "text": "You do the deed and leave in a hurry",
+                        "nextStoryPoint": "highOverseerHQ",
+                        "varChanges": {
+                            "keyItems": -1,
+                            "karma": -5
+                        }
+                    },
+                    "fail": {
+                        "text": "The gang's leader suddenly opens the door, seeing you trying to drop the rat thing. He quickly slashes you down with his sword",
+                        "nextStoryPoint": "noHealthEND",
+                        "varChanges": {
+                            "health": -100
+                        }
+                    }
+                },
+                {
+                    "text": "Remain in the room, pointing your pistol at the door",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "The gang leader enters the room, freezing with his hands up.",
+                        "nextStoryPoint": "slackjawMeeting",
+                        "varChanges": {
+                            "keyItems": 1
+                        }
+                    }
+                }
+            ] 
+        },
+
+        "slackjawMeeting": {
+            "texts": [
+                "'Huh... Interesting... You snuck past all of my guys without a squeek. I might require someone with your particular set of skills, and the only person that could be of interest to YOU here must be the High Overseer... Also, you seem a man of your word. So perhaps we can come to an agreement:...",
+                "... I can solve a problem for you - have my boys brand the High Overseer with the Heretics' Brand to be excommunicated from society; and in exchange, you could help me on a job in a couple of months. I could also deliver you his secret black book he keeps on himself. What do you say?'"
+            ],
+            "prompt": "Do you accept Slackjaw's offer?",
+            "choices": [
+                {
+                    "text": "Yes, it is a nice and quiet solution",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "You seal the deal with a handshake, after which Slackjaw's henchmen do the job and deliver the black book to you",
+                        "nextStoryPoint": "blackBookAndLeave",
+                        "varChanges": {
+                            "karma": 2
+                        }
+                    }
+                },
+                {
+                    "text": "Nope, I want to deal with him personally",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "You part your ways peacefully. You exit the distillery and continue towards the High Overseer",
+                        "nextStoryPoint": "highOverseerHQ"
+                    }
+                }
+            ] 
+        },
+
+        "highOverseerHQ": {
+            "texts": [
+                "[NOT IMPLEMENTED YET]",
+                "The only thing you know for sure is that the High Overseer is deep in this.",
+                "So you start your journey by going to the Distillery District, where the High Overseer's heaquarters are located. You need to find out if he's behind all of this, or just a pawn.",
+                "As you enter the District, you notice in a side street some thugs banging on a door yelling 'Open up, Granny!! We're here to do your laundry... C'mon, open up Granny!"
+            ],
+            "prompt": "What do you do?",
+            "choices": [
+                {
+                    "text": "Continue to the main part of the district. I don't have time for such nonsense",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "Gotta stay focused...",
+                        "nextStoryPoint": "prisonDeathEND"
+                    }
+                }
+            ] 
+        },
+
+        "blackBookAndLeave": {
+            "texts": [
+                "Luckily, the black book contains the location of poor Emily - she's being held with the Empress's head of state! He's the one who is now leading the empire as the 'interim' Lord Regent.",
+                "They are currently at a lighthouse, newly built as a personal place for the Lord Regent.",
+                "Its time to pay them a visit...",
+                "...",
+                "You arrive at the watchtower and fight your way through the guards towards the top, you the tower's highest point"
+            ],
+            "prompt": "What do you do?",
+            "choices": [
+                {
+                    "text": "Continue",
+                    "successRate": 1.0,
+                    "conditions": [
+                        "[karma]>(0)"
+                    ],
+                    "success": {
+                        "text": "You travel to the lighthouse",
+                        "nextStoryPoint": "lighthouse_LOWCHAOS"
+                    }
+                },
+                {
+                    "text": "Continue",
+                    "successRate": 1.0,
+                    "conditions": [
+                        "[karma]<(0)"
+                    ],
+                    "success": {
+                        "text": "You travel to the lighthouse",
+                        "nextStoryPoint": "lighthouse_HIGHCHAOS"
+                    }
+                }
+            ]
+        },
+
+        "lighthouse_LOWCHAOS": {
+            "texts": [
+                "You arrive at the lighthouse and stealthily bypass all the guards, reaching the top of the lighthouse.",
+                "There, you find a big area where the Lord Regent is calmly sitting, drinking his whiskey. Emily, in a separate locked room, banging on the door, begging to let her out."
+            ],
+            "prompt": "What do you do?",
+            "choices": [
+                {
+                    "text": "Eliminate the bastard Lord Regent, and free Emily.",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "You travel to the lighthouse",
+                        "nextStoryPoint": "emilySavedEND"
+                    }
+                },
+                {
+                    "text": "Put the fear of the Outsider into the Lord Regent and strike a deal where you both control the Empire through the heiress Emily",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "You travel to the lighthouse",
+                        "nextStoryPoint": "emilyUsedEND"
+                    }
+                }
+            ]
+        },
+
+        "lighthouse_HIGHCHAOS": {
+            "texts": [
+                "You arrive at the lighthouse and fighting through all the guards, approaching the top of the lighthouse.",
+                "There, you find a long scaffolding going out from the tower. On the end of it...",
+                "... the Lord Regent, holding Emily tightly hostage. He yells to you:",
+                "'Well, well. I've been waiting for you. Ever since I was reported what happened to the High Overseer. You think you can just come and ruin everything I've worked on so hard? NO!'"
+            ],
+            "prompt": "What do you do?",
+            "choices": [
+                {
+                    "text": "...",
+                    "successRate": 1.0,
+                    "success": {
+                        "text": "The Lord Regent steps back and plunges down, taking Emily with him. There's nothing you can do",
+                        "nextStoryPoint": "emilyFallsWithRegentEND"
+                    }
+                }
+            ]
+        },
+
+        "emilySavedEND": {
+            "texts": [
+                "As you free lady Emily and finally end this conspiracy, she is restored as the rightful ruler of the Empire - Emily the Brave, Emily the Just, as she ends the capital island's plague."
+            ]
+        },
+        "emilyUsedEND": {
+            "texts": [
+                "As you strike the final deal, the Empire suffers under your violent dual rule through the hands of young Emily. The plague ravages the capital island, reducing the population to only one fifth of what is used to be."
+            ]
+        },
+
+        "emilyFallsWithRegentEND": {
+            "texts": [
+                "You try to retain control of what's left of the Empire. But with no heir to the throne for power to consolidate around, the empire turns into a wild bunch of constantly fighting warlords, you included, leading to millions of casualties from both the warring and continuing rat plague."
+            ]
+        },
+
+        "prisonDeathEND": {
+            "texts": [
+                "With nothing to stand in their way, the conspirators use the heir to the throne - lady Emily - as a puppet for iron-first rule over the Empire of the Isles"
+            ]
+        },
+        "noHealthEND": {
+            "texts": [
+                "As your health runs out, you meet your demise, failing to achieve your goal..."
+            ]
         }
     }
     

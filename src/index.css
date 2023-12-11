@@ -28,6 +28,18 @@ body {
   display: flex;
   min-width: 320px;
   min-height: 100vh;
+
+  /* background-image: url("HD-wallpaper-dishonored.jpg");
+  background-color: (rgba(0, 0, 0, 0.5));
+  background-size: cover, cover; */
+
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.7), 
+      rgba(0, 0, 0, 1)
+    ),
+    url("HD-wallpaper-dishonored.jpg");
+  background-size: 100% auto;
 }
 
 h1 {

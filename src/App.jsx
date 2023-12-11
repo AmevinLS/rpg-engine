@@ -29,17 +29,57 @@ function App() {
         setOpenChoiceBox(true);
     };
 
+    const checkVarCondition = (condition) => {
+        const regexp = /\[(.+)\]([<>=])\((.+)\)/;
+        let match = condition.match(regexp);
+        let varName = match[1], operator = match[2], value = match[3];
+        switch(operator) {
+            case '<':
+                return variables[varName] < value;
+            case '>':
+                return variables[varName] > value;
+            case '=':
+                return variable[varName] == value;
+        }
+    };
+
+    const validChoices = () => {
+        const valid = currStorypoint.choices.filter(choice => {
+            let allGood = true;
+            if (choice.conditions) {
+                choice.conditions.forEach(condition => {
+                    if (!checkVarCondition(condition))
+                        allGood = false;
+                });
+            }
+            return allGood;
+        });
+        return valid;
+    };
+
     const updateStorypoint = (choiceResult) => {
+        let newStoryPoint = story.storypoints[choiceResult.nextStoryPoint];
         if (choiceResult.varChanges) {
             setVariables((prevVariables => {
                 let newVariables = {...prevVariables}
                 Object.keys(choiceResult.varChanges).forEach(varName => {
                     newVariables[varName] += choiceResult.varChanges[varName];
                 });
+
+                let activeTrigger = null;
+                story.varTriggerEvents.forEach(trigger => {
+                    if (newVariables[trigger.varName] == trigger.varValue) {
+                        activeTrigger = trigger;
+                    }
+                });
+                if (activeTrigger) {
+                    newStoryPoint = story.storypoints[activeTrigger.nextStoryPoint];
+                }
+
                 return newVariables;
             }));
         }
-        setCurrStorypoint(story.storypoints[choiceResult.nextStoryPoint]);
+        setCurrStorypoint(newStoryPoint);
     };
 
     const handleChoiceResult = (choiceResult) => {
@@ -50,6 +90,26 @@ function App() {
         setOpenChoiceBox(false);
     }, [currStorypoint])
 
+    const renderChoicesOrEnd = () => {
+        if (currStorypoint.prompt) {
+            return (
+                <Collapse in={openChoiceBox}>
+                    <div>
+                        {<ChoiceBox key={key} prompt={currStorypoint.prompt} choices={validChoices()} onChoiceResult={handleChoiceResult}/>}
+                    </div>
+                </Collapse>
+            );
+        } else {
+            return (
+                <Collapse in={openChoiceBox}>
+                    <div className="end-div">
+                        <p>THE END</p>
+                    </div>
+                </Collapse>
+            );
+        }
+    }
+
     return (
         <>
             <h1>{story.title}</h1>
@@ -57,11 +117,7 @@ function App() {
             <div className="panels-contain">
                 <div className="left-panel">
                     <StoryPointText key={key} storypoint={currStorypoint} onFinished={showChoices}/>
-                    <Collapse in={openChoiceBox}>
-                        <div>
-                            {<ChoiceBox key={key} prompt={currStorypoint.prompt} choices={currStorypoint.choices} onChoiceResult={handleChoiceResult}/>}
-                        </div>
-                    </Collapse>
+                    {renderChoicesOrEnd()}
                 </div>
                 <VariablesList key={key} variables={variables}/>
             </div>

@@ -1,5 +1,8 @@
 .story-text-box {
     min-height: 10rem; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .story-text-box > p {

@@ -13,12 +13,13 @@ export default function StoryPointText({ storypoint, onFinished}) {
     }, [storypoint])
 
     const handleClick = (event) => {
-        if (textIndex < storypoint.texts.length-1) {
-            if(textIndex+1 == storypoint.texts.length-1) {
+        if (textIndex < storypoint.texts.length) {
+            if(textIndex+1 == storypoint.texts.length) {
                 setIsFinalText(true);
                 onFinished();
+            } else {
+                setTextIndex(textIndex + 1);
             }
-            setTextIndex(textIndex + 1);
         }
     };
 
