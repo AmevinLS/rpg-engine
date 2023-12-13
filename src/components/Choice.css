@@ -59,23 +59,23 @@
 }
 
 .choice-result.success {
-    color: #31dd73;
-    border-color: #31dd73;
+    color: #35ebd3;
+    border-color: #35ebd3;
 }
 
 .success.success-on {
-    background-color: #31dd73;
+    background-color: #35ebd3;
     color: black;
     border-color: black;
 }
 
 .choice-result.fail {
-    color: #ff5656;
-    border-color: #ff5656;
+    color: #9447dc;
+    border-color: #9447dc;
 }
 
 .fail.fail-on {
-    background-color: #ff5656;
+    background-color: #9447dc;
     color: black;
     border-color: black;
 }

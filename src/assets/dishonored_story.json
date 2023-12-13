@@ -2,7 +2,7 @@
     "title": "Dishonored (sort of)",
     "variables": {
         "health": 5,
-        "karma": 10,
+        "karma": 4,
         "keyItems": 0
     },
     "varTriggerEvents": [
@@ -17,7 +17,9 @@
             "texts": [
                 "You are the royal protector of the Empress of the Isles, as well as her daughter Emily. You were sent on a mission to the other islands to request their aid for the plague currently ravaging the capital city.",
                 "Unfortunately, they all left the capital island to rot, waiting to see what will come of it. You return to tell the Empress the bad news.",
-                "Emily gives you a warm welcoming hug after not seeing you for such a long time. The Empress seems distrought that the people of the capital will be left without the support they need.",
+                "First, you are welcomed by the head of state: 'Hello, Corvo. Three days early... a surprise, as usual. The Empress is waiting for you.",
+                "As you approach the Empress' garden, Emily runs up to you gives you a warm welcoming hug after not seeing you for such a long time.",
+                "The Empress also welcomes you back with a smile, but she swiftly becomes distrought after hearing the other island cowardly left the people of the capital without the support they need.",
                 "...",
                 "Suddenly, seemingly out of nowhere, a team of mercenaries appear with swords drawn!"
             ],
@@ -42,7 +44,7 @@
                         "text": "Your arm is quickly slashed with a sword and you drop your pistol",
                         "nextStoryPoint": "prison",
                         "varChanges": {
-                            "health": -5
+                            "health": -2
                         }
                     }
                 }
@@ -55,7 +57,7 @@
                 "They grab the Empress's daughter Emily and disappear with her, seemingly into thin air.",
                 "The guards arrive, seeing only you and a dead Empress laying next to you...",
                 "Since nobody else is around... YOU are blamed for her murder and sent to prison.",
-                "[TODO] Add high overseer here",
+                "Soon after imprisonment, you were tortured by the High Overseer - the leader of the Overseers, the only religious sect that has any power in the Empire",
                 "...",
                 "It has been six months... Your execution is in 3 days...",
                 "Suddenly, you hear a voice coming out of nowhere, from the space around: 'Do you seek... revenge?...'", 
@@ -81,7 +83,7 @@
                         "nextStoryPoint": "distilleryDistrict",
                         "varChanges": {
                             "health": -2,
-                            "karma": -1
+                            "karma": -2
                         }
                     }
                 },
@@ -264,19 +266,20 @@
 
         "highOverseerHQ": {
             "texts": [
-                "[NOT IMPLEMENTED YET]",
-                "The only thing you know for sure is that the High Overseer is deep in this.",
-                "So you start your journey by going to the Distillery District, where the High Overseer's heaquarters are located. You need to find out if he's behind all of this, or just a pawn.",
-                "As you enter the District, you notice in a side street some thugs banging on a door yelling 'Open up, Granny!! We're here to do your laundry... C'mon, open up Granny!"
+                "Entering the Overseer's headquarters, you find big halls with the eary sounds from their so-called 'music boxes' bouncing from wall to wall",
+                ""
             ],
             "prompt": "What do you do?",
             "choices": [
                 {
-                    "text": "Continue to the main part of the district. I don't have time for such nonsense",
+                    "text": "Kill the bastard",
                     "successRate": 1.0,
                     "success": {
-                        "text": "Gotta stay focused...",
-                        "nextStoryPoint": "prisonDeathEND"
+                        "text": "You deal with the one who tortured you in prison and who took part in kidnapping poor Emily. You leave a bloody, gruesome display for all your enemies. Off the cooling corpse, you take the High Overseer's black book",
+                        "nextStoryPoint": "blackBookAndLeave",
+                        "varChanges": {
+                            "karma": -5
+                        }
                     }
                 }
             ] 
