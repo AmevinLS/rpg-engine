@@ -238,7 +238,7 @@
         "slackjawMeeting": {
             "texts": [
                 "'Huh... Interesting... You snuck past all of my guys without a squeek. I might require someone with your particular set of skills, and the only person that could be of interest to YOU here must be the High Overseer... Also, you seem a man of your word. So perhaps we can come to an agreement:...",
-                "... I can solve a problem for you - have my boys brand the High Overseer with the Heretics' Brand to be excommunicated from society; and in exchange, you could help me on a job in a couple of months. I could also deliver you his secret black book he keeps on himself. What do you say?'"
+                "... My name is Slackjaw, and I can solve your problem for you - have my boys brand the High Overseer with the Heretics' Brand to be excommunicated from society; and in exchange, you could help me on a job in a couple of months. I could also deliver you his secret black book he keeps on himself. What do you say?'"
             ],
             "prompt": "Do you accept Slackjaw's offer?",
             "choices": [
